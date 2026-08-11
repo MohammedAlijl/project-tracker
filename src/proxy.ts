@@ -49,7 +49,7 @@ export async function proxy(request: NextRequest) {
   }
 
   if (user && (isPublic || pathname === "/")) {
-    return redirectTo("/dashboard", request, response);
+    return redirectTo("/projects", request, response);
   }
 
   return response;

@@ -31,62 +31,77 @@ export default function LoginPage() {
       return;
     }
 
-    router.replace("/dashboard");
+    router.replace("/projects");
     router.refresh();
   }
 
   return (
-    <main className="mx-auto flex w-full max-w-sm flex-1 flex-col justify-center gap-6 p-6">
-      <h1 className="text-xl font-bold">تسجيل الدخول</h1>
+    <main className="flex-1 flex flex-col items-center justify-center gap-7 px-6 py-10">
+      <div className="flex items-center gap-[9px]">
+        <span className="w-2.5 h-2.5 rounded-[3px] bg-brand" />
+        <span className="text-base font-semibold tracking-[-0.01em]">مسار</span>
+      </div>
 
-      <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-        <label className="flex flex-col gap-1 text-sm">
-          البريد الإلكتروني
-          <input
-            type="email"
-            value={email}
-            onChange={(event) => setEmail(event.target.value)}
-            required
-            autoComplete="email"
-            dir="ltr"
-            className="rounded border border-gray-400 px-3 py-2 text-start"
-          />
-        </label>
+      <div className="w-full max-w-[400px] bg-surface border border-line rounded-[14px] px-[34px] pt-9 pb-8">
+        <h1 className="text-[21px] font-semibold mb-1.5">تسجيل الدخول</h1>
+        <p className="text-[13.5px] text-muted leading-[1.6] mb-[26px]">
+          أدخل بيانات حسابك للمتابعة إلى مشاريعك.
+        </p>
 
-        <label className="flex flex-col gap-1 text-sm">
-          كلمة المرور
-          <input
-            type="password"
-            value={password}
-            onChange={(event) => setPassword(event.target.value)}
-            required
-            autoComplete="current-password"
-            dir="ltr"
-            className="rounded border border-gray-400 px-3 py-2 text-start"
-          />
-        </label>
+        <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+          <label className="flex flex-col gap-[7px]">
+            <span className="text-[13px] font-medium text-ink-soft">
+              البريد الإلكتروني
+            </span>
+            <input
+              type="email"
+              value={email}
+              onChange={(event) => setEmail(event.target.value)}
+              required
+              autoComplete="email"
+              dir="ltr"
+              placeholder="name@work.com"
+              className="h-[42px] px-3 text-sm text-start bg-surface border border-line-input rounded-lg"
+            />
+          </label>
 
-        {error && (
-          <p role="alert" className="text-sm text-red-600">
-            {error}
-          </p>
-        )}
+          <label className="flex flex-col gap-[7px]">
+            <span className="text-[13px] font-medium text-ink-soft">
+              كلمة المرور
+            </span>
+            <input
+              type="password"
+              value={password}
+              onChange={(event) => setPassword(event.target.value)}
+              required
+              autoComplete="current-password"
+              placeholder="••••••••"
+              className="h-[42px] px-3 text-sm bg-surface border border-line-input rounded-lg"
+            />
+          </label>
 
-        <button
-          type="submit"
-          disabled={pending}
-          className="rounded bg-black px-3 py-2 text-white disabled:opacity-50 dark:bg-white dark:text-black"
-        >
-          {pending ? "جارٍ الدخول…" : "دخول"}
-        </button>
-      </form>
+          {error && (
+            <p role="alert" className="text-[13px] text-overdue-ink">
+              {error}
+            </p>
+          )}
 
-      <p className="text-sm">
-        ليس لديك حساب؟{" "}
-        <Link href="/signup" className="underline">
-          أنشئ حساباً
-        </Link>
-      </p>
+          <button
+            type="submit"
+            disabled={pending}
+            className="h-[42px] mt-1.5 bg-brand hover:bg-brand-hover text-white rounded-lg text-[14.5px] font-medium cursor-pointer disabled:opacity-50"
+          >
+            {pending ? "جارٍ الدخول…" : "دخول"}
+          </button>
+        </form>
+
+        <div className="mt-[22px] pt-5 border-t border-line-soft text-[13.5px] text-muted flex gap-1.5">
+          <span>ليس لديك حساب؟</span>
+          <Link href="/signup" className="text-brand font-medium">
+            إنشاء حساب
+          </Link>
+        </div>
+      </div>
     </main>
   );
 }

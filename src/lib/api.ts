@@ -1,9 +1,7 @@
 import { NextResponse } from "next/server";
 
 import { createClient } from "./supabase/server";
-
-export const TASK_STATUSES = ["todo", "in_progress", "done"] as const;
-export type TaskStatus = (typeof TASK_STATUSES)[number];
+import { TASK_STATUSES, type TaskStatus } from "./types";
 
 const UUID_PATTERN =
   /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;

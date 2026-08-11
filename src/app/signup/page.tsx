@@ -46,82 +46,99 @@ export default function SignupPage() {
       return;
     }
 
-    router.replace("/dashboard");
+    router.replace("/projects");
     router.refresh();
   }
 
   return (
-    <main className="mx-auto flex w-full max-w-sm flex-1 flex-col justify-center gap-6 p-6">
-      <h1 className="text-xl font-bold">إنشاء حساب</h1>
+    <main className="flex-1 flex flex-col items-center justify-center gap-7 px-6 py-10">
+      <div className="flex items-center gap-[9px]">
+        <span className="w-2.5 h-2.5 rounded-[3px] bg-brand" />
+        <span className="text-base font-semibold tracking-[-0.01em]">مسار</span>
+      </div>
 
-      <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-        <label className="flex flex-col gap-1 text-sm">
-          البريد الإلكتروني
-          <input
-            type="email"
-            value={email}
-            onChange={(event) => setEmail(event.target.value)}
-            required
-            autoComplete="email"
-            dir="ltr"
-            className="rounded border border-gray-400 px-3 py-2 text-start"
-          />
-        </label>
+      <div className="w-full max-w-[400px] bg-surface border border-line rounded-[14px] px-[34px] pt-9 pb-8">
+        <h1 className="text-[21px] font-semibold mb-1.5">إنشاء حساب</h1>
+        <p className="text-[13.5px] text-muted leading-[1.6] mb-[26px]">
+          دقيقة واحدة، ثم تبدأ أول مشروع لك.
+        </p>
 
-        <label className="flex flex-col gap-1 text-sm">
-          كلمة المرور
-          <input
-            type="password"
-            value={password}
-            onChange={(event) => setPassword(event.target.value)}
-            required
-            minLength={6}
-            autoComplete="new-password"
-            dir="ltr"
-            className="rounded border border-gray-400 px-3 py-2 text-start"
-          />
-        </label>
+        <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+          <label className="flex flex-col gap-[7px]">
+            <span className="text-[13px] font-medium text-ink-soft">
+              البريد الإلكتروني
+            </span>
+            <input
+              type="email"
+              value={email}
+              onChange={(event) => setEmail(event.target.value)}
+              required
+              autoComplete="email"
+              dir="ltr"
+              placeholder="name@work.com"
+              className="h-[42px] px-3 text-sm text-start bg-surface border border-line-input rounded-lg"
+            />
+          </label>
 
-        <label className="flex flex-col gap-1 text-sm">
-          تأكيد كلمة المرور
-          <input
-            type="password"
-            value={confirmation}
-            onChange={(event) => setConfirmation(event.target.value)}
-            required
-            minLength={6}
-            autoComplete="new-password"
-            dir="ltr"
-            className="rounded border border-gray-400 px-3 py-2 text-start"
-          />
-        </label>
+          <label className="flex flex-col gap-[7px]">
+            <span className="text-[13px] font-medium text-ink-soft">
+              كلمة المرور
+            </span>
+            <input
+              type="password"
+              value={password}
+              onChange={(event) => setPassword(event.target.value)}
+              required
+              minLength={6}
+              autoComplete="new-password"
+              placeholder="٦ أحرف على الأقل"
+              className="h-[42px] px-3 text-sm bg-surface border border-line-input rounded-lg"
+            />
+          </label>
 
-        {error && (
-          <p role="alert" className="text-sm text-red-600">
-            {error}
-          </p>
-        )}
-        {notice && (
-          <p role="status" className="text-sm text-green-700">
-            {notice}
-          </p>
-        )}
+          <label className="flex flex-col gap-[7px]">
+            <span className="text-[13px] font-medium text-ink-soft">
+              تأكيد كلمة المرور
+            </span>
+            <input
+              type="password"
+              value={confirmation}
+              onChange={(event) => setConfirmation(event.target.value)}
+              required
+              minLength={6}
+              autoComplete="new-password"
+              placeholder="أعد كتابة كلمة المرور"
+              className="h-[42px] px-3 text-sm bg-surface border border-line-input rounded-lg"
+            />
+          </label>
 
-        <button
-          type="submit"
-          disabled={pending}
-          className="rounded bg-black px-3 py-2 text-white disabled:opacity-50 dark:bg-white dark:text-black"
-        >
-          {pending ? "جارٍ الإنشاء…" : "إنشاء الحساب"}
-        </button>
-      </form>
+          {error && (
+            <p role="alert" className="text-[13px] text-overdue-ink">
+              {error}
+            </p>
+          )}
+          {notice && (
+            <p role="status" className="text-[13px] text-done-ink">
+              {notice}
+            </p>
+          )}
 
-      <p className="text-sm">
-        لديك حساب؟{" "}
-        <Link href="/login" className="underline">
-          سجّل الدخول
-        </Link>
-      </p>
+          <button
+            type="submit"
+            disabled={pending}
+            className="h-[42px] mt-1.5 bg-brand hover:bg-brand-hover text-white rounded-lg text-[14.5px] font-medium cursor-pointer disabled:opacity-50"
+          >
+            {pending ? "جارٍ الإنشاء…" : "إنشاء الحساب"}
+          </button>
+        </form>
+
+        <div className="mt-[22px] pt-5 border-t border-line-soft text-[13.5px] text-muted flex gap-1.5">
+          <span>لديك حساب بالفعل؟</span>
+          <Link href="/login" className="text-brand font-medium">
+            تسجيل الدخول
+          </Link>
+        </div>
+      </div>
     </main>
   );
 }
